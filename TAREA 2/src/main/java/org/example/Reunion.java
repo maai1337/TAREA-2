@@ -12,6 +12,7 @@ abstract public class Reunion {
     private Instant horaInicio;
     private Instant horaFin;
 
+
     public List<Empleado> obtenerAsistencias(){
         return null;
     }
