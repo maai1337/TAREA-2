@@ -2,15 +2,19 @@ package org.example;
 import java.time.*;
 import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 
 abstract public class Reunion {
-    private LocalDate fecha;
+    private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
     private Instant horaInicio;
     private Instant horaFin;
-
+    protected ArrayList<int> invitados;// usar un array que contenga los invitados almacenando sus id
+    protected ArrayList<int> asistentes;// lo mismo que la anterior pero cuadndo llegen se borren de invitados y
+                                        // pasena  asistentes
+    protected  ArrayList<int> atrasado;//los atrasados
 
     public Reunion(int hora, int minuto, int minutos_reunion) {
         this.fecha = LocalDate.now();
@@ -27,6 +31,11 @@ abstract public class Reunion {
         ZonedDateTime zonedDateTime = horaPrevista.atZone(zonaCompu);
         this.horaPrevista = zonedDateTime.toInstant();
         // ver como arreglar esto
+
+        invitados = new ArrayList();
+        asistentes = new ArrayList();
+        atrasado = new ArrayList();
+
 
     }
 
@@ -49,6 +58,13 @@ abstract public class Reunion {
         }else {
             return 0;
         }
+    }
+
+    public void setInvitados(int id){
+        invitados.add(id);
+    }
+    public void setAsistentes(int){
+        
     }
 
 
