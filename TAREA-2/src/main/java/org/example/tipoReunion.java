@@ -14,4 +14,8 @@ public enum tipoReunion {
     tipoReunion(int tipo) {
         this.tipo = tipo;
     }
+
+    public int getTipo() {
+        return tipo;
+    }
 }

@@ -3,7 +3,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
-
+import java.util.ArrayList;
 
 abstract public class Reunion {
     private Date fecha;
@@ -12,8 +12,37 @@ abstract public class Reunion {
     private Instant horaInicio;
     private Instant horaFin;
 
-    public List<Empleado> obtenerAsistencias(){
-        return null;
+    private List<Nota> notas;
+    private List<Asistencia> asistencia;
+    private Empleado organizador;
+    private tipoReunion tipo;
+    private Invitacion invitacion;
+
+    public Reunion(Date fecha, Empleado organizador,Instant horaPrevista, Duration duracionPrevista, tipoReunion tipo){
+        this.fecha = fecha;
+        this.organizador = organizador;
+        this.notas = new ArrayList<>();
+        this.horaPrevista = horaPrevista;
+        this.asistencia = new ArrayList<>();
+        this.tipo = tipo;
+        this.duracionPrevista = duracionPrevista;
+    }
+
+
+    public void agregarNota(Nota nota) {
+        this.notas.add(nota);
+    }
+
+    public void eliminarNota(Nota nota) {
+        this.notas.remove(nota);
+    }
+
+    public List<Nota> obtenerNotas() {
+        return this.notas;
+    }
+
+    public List<Asistencia> obtenerAsistencias(){
+        return this.asistencia;
     }
 
     public List<Empleado> obtenerAusencias(){
@@ -25,7 +54,7 @@ abstract public class Reunion {
     }
 
     public int obtenerTotalAsistencias(){
-        return 0;
+        return asistencia.size();
     }
 
     public float obtenerPorcentajeAsistencias(){
@@ -84,4 +113,19 @@ abstract public class Reunion {
         this.horaFin = horaFin;
     }
 
+    public Empleado getOrganizador() {
+        return organizador;
+    }
+
+    public void agregarAsistencia(Asistencia asistencia) {
+        this.asistencia.add(asistencia);
+    }
+
+    public void addNota(Nota nota) {
+        this.notas.add(nota);
+    }
+
+    public List<Nota> getNotas() {
+        return this.notas;
+    }
 }

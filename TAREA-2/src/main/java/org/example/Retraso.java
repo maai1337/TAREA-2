@@ -6,4 +6,7 @@ public class Retraso {
 
     private Instant hora;
 
+    public Retraso(Instant hora) {
+        this.hora = hora;
+    }
 }

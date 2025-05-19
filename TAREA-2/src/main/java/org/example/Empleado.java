@@ -1,7 +1,5 @@
 package org.example;
 
-import java.util.List;
-
 public class Empleado implements Invitable {
 
     private String id;
@@ -59,7 +57,9 @@ public class Empleado implements Invitable {
 
     @Override
     public void invitar() {
-        System.out.println("Enviando invitación a: " + nombre + " (" + correo + ")");
+
+        System.out.println("Invitación enviada a " + this.nombre);
+
     }
 
     @Override
