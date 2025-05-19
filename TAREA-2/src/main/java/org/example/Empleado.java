@@ -1,5 +1,7 @@
 package org.example;
 
+import java.time.Instant;
+
 public class Empleado implements Invitable {
 
     private String id;
@@ -56,14 +58,18 @@ public class Empleado implements Invitable {
     }
 
     @Override
-    public void invitar() {
-
-        System.out.println("Invitación enviada a " + this.nombre);
-
+    public void invitar(Reunion reunion) {
+        Invitacion inv = new Invitacion(Instant.now(), this);
+        reunion.addInvitado(inv);
     }
 
     @Override
     public String toString() {
-        return "";
+        return "Empleado{" +
+                "id='" + id + "', " +
+                "nombre='" + nombre + "', " +
+                "apellidos='" + apellidos + "', " +
+                "correo='" + correo + "'" +
+                "}";
     }
 }
