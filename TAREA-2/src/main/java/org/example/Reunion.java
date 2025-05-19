@@ -16,7 +16,7 @@ abstract public class Reunion {
     private List<Asistencia> asistencia;
     private Empleado organizador;
     private tipoReunion tipo;
-    private Invitacion invitacion;
+    private List<Invitacion> invitados;
 
     public Reunion(Date fecha, Empleado organizador,Instant horaPrevista, Duration duracionPrevista, tipoReunion tipo){
         this.fecha = fecha;
@@ -26,6 +26,7 @@ abstract public class Reunion {
         this.asistencia = new ArrayList<>();
         this.tipo = tipo;
         this.duracionPrevista = duracionPrevista;
+        this.invitados = new ArrayList<>();
     }
 
 
@@ -128,4 +129,13 @@ abstract public class Reunion {
     public List<Nota> getNotas() {
         return this.notas;
     }
+
+    public void addInvitado(Invitacion invitacion){
+        invitados.add(invitacion);
+    }
+
+    public List<Invitacion> getInvitados() {
+        return this.invitados;
+    }
+
 }

@@ -1,5 +1,5 @@
 package org.example;
 
 public interface Invitable {
-    public void invitar();
+    public abstract void invitar(Reunion reunion);
 }

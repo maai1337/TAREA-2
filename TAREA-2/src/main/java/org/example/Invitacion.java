@@ -19,5 +19,12 @@ public class Invitacion {
         return destinatario;
     }
 
+    public String toString() {
+        return "Invitacion{" +
+                "hora=" + getHora() +
+                ", destinatario=" + getDestinatario() +
+                '}';
+    }
+
 }
 
