@@ -11,11 +11,11 @@ abstract public class Reunion {
     private Duration duracionPrevista;
     private Instant horaInicio;
     private Instant horaFin;
-    protected ArrayList<int> invitados;// usar un array que contenga los invitados almacenando sus id
-    protected ArrayList<int> asistentes;// lo mismo que la anterior pero cuadndo llegen se borren de invitados y
+    protected ArrayList<Empleados> invitados;// usar un array que contenga los invitados almacenando sus id
+    protected ArrayList<Empleados> asistentes;// lo mismo que la anterior pero cuadndo llegen se borren de invitados y
                                         // pasena  asistentes
-    protected  ArrayList<int> atrasado;//los atrasados
-
+    protected  ArrayList<Empleados> atrasado;//los atrasados
+    protected  ArrayList<Instant> tiempoAtrasado;
     public Reunion(int hora, int minuto, int minutos_reunion) {
         this.fecha = LocalDate.now();
         this.duracionPrevista = Duration.ofMinutes(minutos_reunion);
@@ -60,11 +60,34 @@ abstract public class Reunion {
         }
     }
 
-    public void setInvitados(int id){
-        invitados.add(id);
+    public void setInvitados(Empleados empleado){
+        if (!invitados.contains(empleado)) {
+            invitados.add(empleado);
+        }
     }
-    public void setAsistentes(int){
-        
+    public void setAsistentes(Empleado empleado){
+        if(invitados.contains(empleado) && !asistentes.contains(empleado) && !atrasado.contains(empleado) ){
+            asistentes.add(empleado)
+        }
+    }
+
+    public void setAtrasado (Empleado empleado, Instant horaAtraso){
+        if(invitados.contains(empleado) && !atrasado.contains(empleado) && !asistentes.contains(empleado)){
+            atrasado.add(empleado);
+            horaAtraso.toEpochMilli(horaAtraso);
+        }
+    }
+
+    public int getAsistencia(){
+        return asistentes.size()+atrasado.size();
+    }
+
+    public float getPorcentajeAsistencia(){
+        if(asistentes.size() > 0){
+            return getAsistencia()*100/invitados.size();
+        }else {
+            return 0;
+        }
     }
 
 
