@@ -24,14 +24,18 @@ public class Main {
         departamento.agregarEmpleado(empleado2);
         departamento.agregarEmpleado(empleado3);
 
-        System.out.println(departamento.getNombre());
-        System.out.println("Número de empleados: " + departamento.obtenerCantidadEmpleados());
-        empleado3.invitar();
-        departamento.invitar();
 
 
         Reunion reunion = new ReunionPresencial(new Date(2025), empleado1, Instant.now(), Duration.ofHours(2), tipoReunion.TECNICA, "Sala 101");
-        System.out.println(reunion.getFecha());
+        empleado3.invitar(reunion);
+        departamento.invitar(reunion);
+
+        for (Invitacion invitacion : reunion.getInvitados()) {
+            System.out.println(invitacion.getDestinatario());
+            System.out.println(invitacion.getHora());
+        }
+
+
 
     }
 }
