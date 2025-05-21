@@ -13,13 +13,27 @@ public class Intel {
     private String donde;
     private List<Empleado> puntuales;
     private List<Empleado> atraso;
+    private List<Nota> notas;
 
-    public Intel() {
+    public Intel(Reunion reunion,ReunionPresencial reunionPresencial,ReunionVirtual reunionVirtual) {
         puntuales = new ArrayList<>();
         atraso = new ArrayList<>();
+        notas = new ArrayList<>();
+        this.fecha=reunion.getFecha().toString();
+        this.hora_prevista=reunion.getHoraPrevista().toString();
+        this.hora_inicio=reunion.getHoraInicio().toString();
+        this.hora_fin=reunion.getHoraFin().toString();
+        this.tipo=reunion.getTipo();
+        if(reunionPresencial!=null) {
+            this.donde=reunionPresencial.getSala();
+        }else{
+            this.donde=reunionVirtual.getEnlace();
+        }
+
 
 
     }
+
     public void setEmpleados(Reunion reunion) {
         Instant horaPrevista = reunion.getHoraPrevista();
         List<Asistencia> asistentes= reunion.obtenerAsistencias();
@@ -33,5 +47,8 @@ public class Intel {
             }
         }
     }
-    this.fecha=reunion.getFecha().toString();
+    public void setNotas(Reunion reunion) {
+
     }
+
+}
