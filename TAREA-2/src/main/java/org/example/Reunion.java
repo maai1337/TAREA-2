@@ -148,5 +148,8 @@ abstract public class Reunion {
     public List<Invitacion> getInvitados() {
         return this.invitados;
     }
+    public String getTipo() {
+        return tipo.toString();
+    }
 
 }
