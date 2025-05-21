@@ -72,8 +72,9 @@ abstract public class Reunion {
         if(this.horaInicio != null && this.horaFin != null){
             Duration duracion = Duration.between(this.horaInicio, this.horaFin);
             return duracion.toSeconds()/60f;
+        }else {
+            return 0;
         }
-        return 0;
     }
 
     public void iniciar(){
