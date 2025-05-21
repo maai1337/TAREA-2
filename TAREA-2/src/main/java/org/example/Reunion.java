@@ -59,10 +59,20 @@ abstract public class Reunion {
     }
 
     public float obtenerPorcentajeAsistencias(){
-        return 0;
+        if (asistencia.size() > 0) {
+            return (float) (obtenerTotalAsistencias() * 100) /invitados.size();
+        }else{
+            return 0;
+        }
+
+
     }
 
     public float obtenerTiempoReal(){
+        if(this.horaInicio != null && this.horaFin != null){
+            Duration duracion = Duration.between(this.horaInicio, this.horaFin);
+            return duracion.toSeconds()/60f;
+        }
         return 0;
     }
 
