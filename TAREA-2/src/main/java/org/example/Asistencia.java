@@ -19,4 +19,9 @@ public class Asistencia extends Retraso {
         return this.hora;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado: " + getEmpleado() +"\nHora de llegada: " + getRetraso();
+    }
+
 }

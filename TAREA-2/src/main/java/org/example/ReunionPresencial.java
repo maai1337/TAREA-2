@@ -2,6 +2,7 @@ package org.example;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ReunionPresencial extends Reunion {
@@ -16,4 +17,11 @@ public class ReunionPresencial extends Reunion {
     public String getSala() {
         return sala;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nSala: " + sala;
+    }
+
+
 }

@@ -20,10 +20,9 @@ public class Invitacion {
     }
 
     public String toString() {
-        return "Invitacion{" +
-                "hora=" + getHora() +
-                ", destinatario=" + getDestinatario() +
-                '}';
+        return "=== Invitacion ===\n" +
+                getDestinatario() +
+                "Hora de invitacion : " + getHora() + "\n";
     }
 
 }

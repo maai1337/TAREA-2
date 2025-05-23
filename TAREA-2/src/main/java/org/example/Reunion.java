@@ -12,11 +12,11 @@ abstract public class Reunion {
     private Instant horaInicio;
     private Instant horaFin;
 
-    private List<Nota> notas;
-    private List<Asistencia> asistencia;
+    private ArrayList<Nota> notas;
+    private ArrayList<Asistencia> asistencia;
     private Empleado organizador;
     private tipoReunion tipo;
-    private List<Invitacion> invitados;
+    private ArrayList<Invitacion> invitados;
 
     public Reunion(Date fecha, Empleado organizador,Instant horaPrevista, Duration duracionPrevista, tipoReunion tipo){
         this.fecha = fecha;
@@ -38,19 +38,19 @@ abstract public class Reunion {
         this.notas.remove(nota);
     }
 
-    public List<Nota> obtenerNotas() {
+    public ArrayList<Nota> obtenerNotas() {
         return this.notas;
     }
 
-    public List<Asistencia> obtenerAsistencias(){
+    public ArrayList<Asistencia> obtenerAsistencias(){
         return this.asistencia;
     }
 
-    public List<Empleado> obtenerAusencias(){
+    public ArrayList<Empleado> obtenerAusencias(){
         return null;
     }
 
-    public List<Empleado> obtenerRetrasos(){
+    public ArrayList<Empleado> obtenerRetrasos(){
         return null;
     }
 
@@ -126,7 +126,7 @@ abstract public class Reunion {
         this.notas.add(nota);
     }
 
-    public List<Nota> getNotas() {
+    public ArrayList<Nota> getNotas() {
         return this.notas;
     }
 
@@ -134,8 +134,31 @@ abstract public class Reunion {
         invitados.add(invitacion);
     }
 
-    public List<Invitacion> getInvitados() {
+    public ArrayList<Invitacion> getInvitados() {
         return this.invitados;
     }
 
+    @Override
+    public String toString() {
+        String resultado = "=== DETALLES DE LA REUNIÓN ===\n";
+        resultado += "Fecha: " + fecha + "\n";
+        resultado += "Organizador: " + organizador.getNombre() + " " + organizador.getApellidos() + "\n";
+        resultado += "Tipo: " + tipo + "\n";
+        resultado += "Hora prevista: " + horaPrevista + "\n";
+        resultado += "Duración prevista: " + duracionPrevista.toMinutes() + " minutos\n";
+
+        if (horaInicio != null) {
+            resultado += "Hora de inicio: " + horaInicio + "\n";
+        }
+
+        if (horaFin != null) {
+            resultado += "Hora de finalización: " + horaFin + "\n";
+        }
+
+        resultado += "Número de invitados: " + invitados.size() + "\n";
+        resultado += "Número de asistentes: " + asistencia.size() + "\n";
+        resultado += "Número de notas: " + notas.size();
+
+        return resultado;
+    }
 }

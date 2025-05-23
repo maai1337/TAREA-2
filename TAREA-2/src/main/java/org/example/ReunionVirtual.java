@@ -17,6 +17,11 @@ public class ReunionVirtual extends Reunion {
         return enlace;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + "\nEnlace: " + enlace;
+    }
+
 
 
 }

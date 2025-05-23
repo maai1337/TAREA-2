@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 
 /**
@@ -29,13 +29,16 @@ public class Main {
         Reunion reunion = new ReunionPresencial(new Date(2025), empleado1, Instant.now(), Duration.ofHours(2), tipoReunion.TECNICA, "Sala 101");
         empleado3.invitar(reunion);
         departamento.invitar(reunion);
+        ArrayList <Invitacion> invitaciones = reunion.getInvitados();
 
-        for (Invitacion invitacion : reunion.getInvitados()) {
-            System.out.println(invitacion.getDestinatario());
-            System.out.println(invitacion.getHora());
+        System.out.println(departamento.toString());
+
+
+        for (Invitacion invitacion : invitaciones) {
+            System.out.println(invitacion.toString());
         }
 
-
+        System.out.println(reunion.toString());
 
     }
 }

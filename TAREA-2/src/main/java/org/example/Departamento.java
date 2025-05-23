@@ -5,7 +5,7 @@ import java.util.List;
 public class Departamento implements Invitable {
 
     private String nombre;
-    private List<Empleado> empleados;
+    private ArrayList<Empleado> empleados;
 
     public Departamento(String nombre){
         this.nombre = nombre;
@@ -29,6 +29,19 @@ public class Departamento implements Invitable {
         for (Empleado empleado : empleados) {
             empleado.invitar(reunion);
         }
+    }
+
+    public ArrayList<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    @Override
+    public String toString() {
+        String str = "=== DEPARTAMENTO " + nombre + " ===\n";
+        for (Empleado empleado : empleados) {
+            str += empleado.toString() + "\n";
+        }
+        return str;
     }
 
 

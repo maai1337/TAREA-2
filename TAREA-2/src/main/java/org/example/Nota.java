@@ -10,4 +10,10 @@ public class Nota {
     public String getContenido() {
         return Contenido;
     }
+
+    @Override
+    public String toString() {
+        return "Nota:\n" + Contenido;
+    }
+
 }
