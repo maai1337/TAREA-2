@@ -166,9 +166,9 @@ abstract public class Reunion {
         resultado += "Duracion real: " + obtenerTiempoReal() + " minutos\n";
         resultado += "Número de invitados: " + invitados.size() + "\n";
         resultado += "Número de asistentes: " + asistencia.size() + "\n";
-        resultado += "lista de aistentes:" + "\n";
-        for (Asistencia asistentes : asistencia) {
-
+        resultado += "Lista de asistentes:" + "\n";
+        for (Asistencia asistente : asistencia) {
+            resultado += asistente.toString(horaInicio) + "\n";
         }
         resultado += "Número de notas: " + notas.size();
 

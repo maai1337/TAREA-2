@@ -4,7 +4,6 @@ import java.time.Instant;
 
 public class Asistencia extends Retraso {
     private Empleado empleado;
-    private Instant hora;
 
     public Asistencia(Empleado empleado, Instant hora) {
         super(hora);
@@ -12,16 +11,26 @@ public class Asistencia extends Retraso {
     }
 
     public Empleado getEmpleado() {
-        return this.empleado;
+        return empleado;
     }
 
     public Instant getRetraso() {
-        return this.hora;
+        return super.getHora();
     }
 
     @Override
     public String toString() {
-        return "Empleado: " + getEmpleado() +"\nHora de llegada: " + getRetraso();
+        return "Empleado: " + getEmpleado().getNombre()
+                + " " + getEmpleado().getApellidos();
+    }
+
+    public String toString(Instant horaInicio){
+        if (getRetraso().isAfter(horaInicio)){
+            return "Empleado: " + getEmpleado().getNombre()
+                    + " " + getEmpleado().getApellidos() + " | Hora de llegada (Atrasado): " + getRetraso();
+        } else {
+            return this.toString();
+        }
     }
 
 }

@@ -22,7 +22,7 @@ public class Invitacion {
     public String toString() {
         return "=== Invitacion ===\n" +
                 getDestinatario() +
-                "Hora de invitacion : " + getHora() + "\n";
+                "\nHora de invitacion : " + getHora() + "\n";
     }
 
 }

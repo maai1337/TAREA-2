@@ -63,6 +63,18 @@ public class Empleado implements Invitable {
         reunion.addInvitado(inv);
     }
 
+    public void asistir(Reunion reunion) {
+
+        // Revisa q el empleado esté invitado
+        for (Invitacion invitacion : reunion.getInvitados()) {
+            if (invitacion.getDestinatario() == this) {
+                Asistencia asistencia = new Asistencia(this, Instant.now());
+                reunion.agregarAsistencia(asistencia);
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return "Empleado: " + nombre + " " + apellidos +

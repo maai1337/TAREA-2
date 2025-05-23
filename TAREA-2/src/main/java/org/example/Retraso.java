@@ -10,6 +10,10 @@ public class Retraso {
         this.hora = hora;
     }
 
+    public Instant getHora() {
+        return hora;
+    }
+
     @Override
     public String toString() {
         return "Retraso: " + hora;
