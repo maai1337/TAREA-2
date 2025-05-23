@@ -1,9 +1,13 @@
 package org.example;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.Writer;
 
 abstract public class Reunion {
     private Date fecha;
@@ -59,10 +63,6 @@ abstract public class Reunion {
     }
 
     public float obtenerPorcentajeAsistencias(){
-        return 0;
-    }
-
-    public float obtenerTiempoReal(){
         return 0;
     }
 
@@ -138,6 +138,16 @@ abstract public class Reunion {
         return this.invitados;
     }
 
+    public float obtenerTiempoReal(){
+        if(this.horaInicio != null && this.horaFin != null){
+            Duration duracion = Duration.between(this.horaInicio, this.horaFin);
+            return duracion.toSeconds()/60f;
+        }else {
+            return 0;
+        }
+    }
+
+
     @Override
     public String toString() {
         String resultado = "=== DETALLES DE LA REUNIÓN ===\n";
@@ -146,7 +156,6 @@ abstract public class Reunion {
         resultado += "Tipo: " + tipo + "\n";
         resultado += "Hora prevista: " + horaPrevista + "\n";
         resultado += "Duración prevista: " + duracionPrevista.toMinutes() + " minutos\n";
-
         if (horaInicio != null) {
             resultado += "Hora de inicio: " + horaInicio + "\n";
         }
@@ -154,11 +163,21 @@ abstract public class Reunion {
         if (horaFin != null) {
             resultado += "Hora de finalización: " + horaFin + "\n";
         }
-
+        resultado += "Duracion real: " + obtenerTiempoReal() + " minutos\n";
         resultado += "Número de invitados: " + invitados.size() + "\n";
         resultado += "Número de asistentes: " + asistencia.size() + "\n";
+        resultado += "lista de aistentes:" + "\n";
+        for (Asistencia asistentes : asistencia) {
+
+        }
         resultado += "Número de notas: " + notas.size();
 
+
         return resultado;
+    }
+
+    public void escriba(String path) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+        writer.write(toString());
     }
 }

@@ -1,5 +1,6 @@
 package org.example;
 
+import java.nio.file.Path;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -37,8 +38,11 @@ public class Main {
         for (Invitacion invitacion : invitaciones) {
             System.out.println(invitacion.toString());
         }
-
+        reunion.iniciar();
         System.out.println(reunion.toString());
+
+        Informe informe = new Informe(reunion.toString());
+        informe.impre(reunion.toString());
 
     }
 }
