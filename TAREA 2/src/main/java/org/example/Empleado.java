@@ -50,16 +50,16 @@ public class Empleado implements Invitable {
     }
 
     /**
-     * Metodo getter que devolvera el apellido de esta instancia de empleado.
-     * @return el apellido de este empleado.
+     * Metodo getter que devolvera los apellidos de esta instancia de empleado.
+     * @return los apellidos de este empleado.
      */
     public String getApellidos() {
         return apellidos;
     }
 
     /**
-     * Metodo setter que agrega o cambia el apellido de la actual instancia de empleado.
-     * @param apellidos que sera el nuevo apellido del empleado
+     * Metodo setter que agrega o cambia los apellidos de la actual instancia de empleado.
+     * @param apellidos que sera los nuevo apellidos del empleado
      */
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
@@ -126,6 +126,24 @@ public class Empleado implements Invitable {
     public void invitar(Reunion reunion) {
         Invitacion inv = new Invitacion(Instant.now(), this);
         reunion.addInvitado(inv);
+    }
+
+    /**
+     * Metodo que revisa si la instancia de {@code Empleados} esta invitado
+     * a la reunión. Esto se logra revisando si en la instancia {@link Reunion}
+     * en la lista se invitados se encuentra el empleado de esta instancia, si es asi, se crea una instancia de
+     * {@link Asistencia} para confirmar que este empleado si esta invitado y a la hora que llegara.
+     * @param reunion, instancia de reunión.
+     */
+    public void asistir(Reunion reunion) {
+        for (Invitacion invitacion : reunion.getInvitados()) {
+            if (invitacion.getDestinatario() == this) {
+                Asistencia asistencia = new Asistencia(this, Instant.now());
+                reunion.agregarAsistencia(asistencia);
+                reunion.quitarInvitado(invitacion);
+                break;
+            }
+        }
     }
 
     /**

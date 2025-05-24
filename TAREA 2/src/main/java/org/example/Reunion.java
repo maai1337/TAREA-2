@@ -84,8 +84,8 @@ abstract public class Reunion {
      * a la reunión.
      * @return una lista con los empleados que faltaron a la reunión
      */
-    public ArrayList<Empleado> obtenerAusencias(){ //modificar
-        return null;
+    public ArrayList<Invitacion> obtenerAusencias(){
+        return invitados;
     }
 
     /**
@@ -93,7 +93,13 @@ abstract public class Reunion {
      * @return una lista con los empleados que llegaron atrasados.
      */
     public ArrayList<Empleado> obtenerRetrasos(){
-        return null;
+        ArrayList<Empleado> retrasos = new ArrayList<>();
+        for (Asistencia asistencia : this.asistencia) {
+            if (asistencia.getRetraso().isAfter(horaInicio)) {
+                retrasos.add(asistencia.getEmpleado());
+            }
+        }
+        return retrasos;
     }
 
     /**
@@ -109,9 +115,7 @@ abstract public class Reunion {
      * @return
      */
     public float obtenerPorcentajeAsistencias(){
-        int asistencia = asistencia.size();
-        int tinvitados = invitados.size();
-        return (asistencia * 100)/ tinvitados;
+        return ((float) obtenerTotalAsistencias() / (float) totalInvitados) * 100;
     }
 
     /**
@@ -119,7 +123,12 @@ abstract public class Reunion {
      * @return el tiempo real de la reunión.
      */
     public float obtenerTiempoReal(){
-        return (float)(horaFin - horaInicio);  //nota: no se si esto sea asi
+        if(this.horaInicio != null && this.horaFin != null){
+            Duration duracion = Duration.between(this.horaInicio, this.horaFin);
+            return duracion.toSeconds()/60f;
+        }else {
+            return 0;
+        }
     }
 
     /**
@@ -254,9 +263,32 @@ abstract public class Reunion {
     /**
      * Metodo que permite agregar una invitación a la lista de invitados.
      * @param invitacion que recive un empleado para ser invitado a la reunión.
+     * @return retornara nada si el destinatario ya tiene una invitación.
      */
     public void addInvitado(Invitacion invitacion){
+        for (Invitacion inv : this.invitados) {
+            if (inv.getDestinatario() == invitacion.getDestinatario()) {
+                return; // Ya existe una invitación para este destinatario
+            }
+        }
         invitados.add(invitacion);
+        totalInvitados++;
+    }
+
+    /**
+     * Metodo que permite obtener el total de invitados de la reunión.
+     * @return el total de invitados de la reunión.
+     */
+    public int obtenerTotalInvitados(){
+        return this.totalInvitados;
+    }
+
+    /**
+     * Metodo que permite quitar un invitado de la lista de invitados.
+     * @param invitacion que sera eliminada.
+     */
+    public void quitarInvitado(Invitacion invitacion){
+        invitados.remove(invitacion);
     }
 
     /**
