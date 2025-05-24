@@ -324,11 +324,3 @@ abstract public class Reunion {
         if (horaFin != null) {
             resultado += "Hora de finalización: " + horaFin + "\n";
         }
-
-        resultado += "Número de invitados: " + invitados.size() + "\n";
-        resultado += "Número de asistentes: " + asistencia.size() + "\n";
-        resultado += "Número de notas: " + notas.size();
-
-        return resultado;
-    }
-}

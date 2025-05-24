@@ -38,16 +38,3 @@ public class Asistencia extends Retraso {
     public Instant getRetraso() {
         return this.hora;
     }
-
-    /**
-     * Metodo sobreescrito de {@link Retraso}, que devuelve una cadena que representa los datos
-     * de la instancia actual de {@code Asistencia}.
-     *
-     * @return una cadena donde se especifica el empleado que asistio y su hora de llegada.
-     */
-    @Override
-    public String toString() {
-        return "Empleado: " + getEmpleado() +"\nHora de llegada: " + getRetraso();
-    }
-
-}

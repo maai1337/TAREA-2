@@ -23,13 +23,3 @@ public class Nota {
     public String getContenido() {
         return Contenido;
     }
-
-    /**
-     * Metodo sobreescrito, que devuelve una representación del contenido de la nota.
-     * @return una cadena con el contenido de la nota.
-     */
-    @Override
-    public String toString() {
-        return "Nota:\n" + Contenido;
-    }
-}

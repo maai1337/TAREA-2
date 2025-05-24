@@ -46,5 +46,3 @@ public class ReunionVirtual extends Reunion {
     public String toString() {
         return super.toString() + "\nEnlace: " + enlace;
     }
-
-}
