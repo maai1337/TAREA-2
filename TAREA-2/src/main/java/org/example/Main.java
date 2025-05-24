@@ -1,5 +1,6 @@
 package org.example;
 
+import java.nio.file.Path;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -7,11 +8,12 @@ import java.util.Date;
 
 
 
+
 /**
  * Main meramente orientativo
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Departamento departamento = new Departamento("DEPARTAMENTO");
 
@@ -37,8 +39,23 @@ public class Main {
         for (Invitacion invitacion : invitaciones) {
             System.out.println(invitacion.toString());
         }
+        empleado1.asistir(reunion);
+        Thread.sleep(1000);
+        reunion.iniciar();
+        Thread.sleep(1000);
+        empleado3.asistir(reunion);
+        empleado2.asistir(reunion);
+        Nota hola =new Nota("nota 1 ");
+        reunion.agregarNota(hola);
 
+        Nota hola2 =new Nota("nota 2 ");
+        reunion.agregarNota(hola2);
+        reunion.iniciar();
         System.out.println(reunion.toString());
+
+
+        Informe informe = new Informe(reunion.toString());
+        Informe.impre(reunion.toString());
 
     }
 }
