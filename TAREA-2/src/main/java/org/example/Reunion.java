@@ -170,14 +170,13 @@ abstract public class Reunion {
         for (Asistencia asistente : asistencia) {
             resultado += asistente.toString(horaInicio) + "\n";
         }
-        resultado += "Número de notas: " + notas.size();
-
-
+        resultado += "Número de notas: " + notas.size()+"\n";
+        resultado += "Notas de la reunión:\n";
+        for (Nota nota : notas) {
+            resultado += nota.toString() + "\n";
+        }
         return resultado;
     }
 
-    public void escriba(String path) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-        writer.write(toString());
-    }
+
 }
