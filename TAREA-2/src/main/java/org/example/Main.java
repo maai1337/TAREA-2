@@ -45,6 +45,12 @@ public class Main {
         Thread.sleep(1000);
         empleado3.asistir(reunion);
         empleado2.asistir(reunion);
+        Nota hola =new Nota("nota 1 ");
+        reunion.agregarNota(hola);
+
+        Nota hola2 =new Nota("nota 2 ");
+        reunion.agregarNota(hola2);
+        reunion.iniciar();
         System.out.println(reunion.toString());
 
 
