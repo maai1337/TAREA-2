@@ -22,6 +22,8 @@ abstract public class Reunion {
     private tipoReunion tipo;
     private ArrayList<Invitacion> invitados;
 
+    private int totalInvitados;
+
     public Reunion(Date fecha, Empleado organizador,Instant horaPrevista, Duration duracionPrevista, tipoReunion tipo){
         this.fecha = fecha;
         this.organizador = organizador;
@@ -31,6 +33,7 @@ abstract public class Reunion {
         this.tipo = tipo;
         this.duracionPrevista = duracionPrevista;
         this.invitados = new ArrayList<>();
+        this.totalInvitados = 0;
     }
 
 
@@ -50,12 +53,18 @@ abstract public class Reunion {
         return this.asistencia;
     }
 
-    public ArrayList<Empleado> obtenerAusencias(){
-        return null;
+    public ArrayList<Invitacion> obtenerAusencias(){
+        return invitados;
     }
 
     public ArrayList<Empleado> obtenerRetrasos(){
-        return null;
+        ArrayList<Empleado> retrasos = new ArrayList<>();
+        for (Asistencia asistencia : this.asistencia) {
+            if (asistencia.getRetraso().isAfter(horaInicio)) {
+                retrasos.add(asistencia.getEmpleado());
+            }
+        }
+        return retrasos;
     }
 
     public int obtenerTotalAsistencias(){
@@ -63,7 +72,7 @@ abstract public class Reunion {
     }
 
     public float obtenerPorcentajeAsistencias(){
-        return 0;
+        return ((float) obtenerTotalAsistencias() / (float) totalInvitados) * 100;
     }
 
     public void iniciar(){
@@ -131,7 +140,17 @@ abstract public class Reunion {
     }
 
     public void addInvitado(Invitacion invitacion){
+        for (Invitacion inv : this.invitados) {
+            if (inv.getDestinatario() == invitacion.getDestinatario()) {
+                return; // Ya existe una invitación para este destinatario
+            }
+        }
         invitados.add(invitacion);
+        totalInvitados++;
+    }
+
+    public void quitarInvitado(Invitacion invitacion){
+        invitados.remove(invitacion);
     }
 
     public ArrayList<Invitacion> getInvitados() {
@@ -145,6 +164,10 @@ abstract public class Reunion {
         }else {
             return 0;
         }
+    }
+
+    public int obtenerTotalInvitados(){
+        return this.totalInvitados;
     }
 
 
@@ -164,13 +187,17 @@ abstract public class Reunion {
             resultado += "Hora de finalización: " + horaFin + "\n";
         }
         resultado += "Duracion real: " + obtenerTiempoReal() + " minutos\n";
-        resultado += "Número de invitados: " + invitados.size() + "\n";
-        resultado += "Número de asistentes: " + asistencia.size() + "\n";
+        resultado += "Número de invitados: " + obtenerTotalInvitados() + "\n";
+        resultado += "Número de asistentes: " + obtenerTotalAsistencias() + "\n";
         resultado += "Lista de asistentes:" + "\n";
         for (Asistencia asistente : asistencia) {
             resultado += asistente.toString(horaInicio) + "\n";
         }
-        resultado += "Número de notas: " + notas.size();
+        resultado += "Número de notas: " + notas.size() + "\n";
+        resultado += "### Lista de notas ###" + "\n";
+        for (Nota nota : notas) {
+            resultado += nota.toString() + "\n";
+        }
 
 
         return resultado;

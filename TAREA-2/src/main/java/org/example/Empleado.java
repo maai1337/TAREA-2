@@ -70,6 +70,7 @@ public class Empleado implements Invitable {
             if (invitacion.getDestinatario() == this) {
                 Asistencia asistencia = new Asistencia(this, Instant.now());
                 reunion.agregarAsistencia(asistencia);
+                reunion.quitarInvitado(invitacion);
                 break;
             }
         }

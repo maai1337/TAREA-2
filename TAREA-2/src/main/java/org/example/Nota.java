@@ -13,7 +13,7 @@ public class Nota {
 
     @Override
     public String toString() {
-        return "Nota:\n" + Contenido;
+        return "Nota: " + Contenido;
     }
 
 }

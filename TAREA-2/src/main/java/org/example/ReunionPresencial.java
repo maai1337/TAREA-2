@@ -20,7 +20,7 @@ public class ReunionPresencial extends Reunion {
 
     @Override
     public String toString() {
-        return super.toString() + "\nSala: " + sala;
+        return super.toString() + "Sala: " + sala;
     }
 
 
